@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "target": "es5",
+    "module":"none",
+    "lib":["dom", "es5", "es2015.promise"]
+  },
+  "exclude": [
+        "typescript_definitions"
+    ]
+}
