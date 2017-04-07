@@ -8,13 +8,13 @@ It not use loader for now which is pretty bad but it will in the futur.
 ## Requierements
 Before beginning, you must install :
 - npm : https://nodejs.org
-- gulp : npm install gulp -g
+- gulp : `npm install gulp -g`
 
-## Compile the project
-Just use this command when you are in the root folder :  
-```
-gulp
-```
+## Get dependencies and compile the project
+In the root folder :  
+`npm install`
+and then :
+`gulp`
 
 ## Predetermined behaviors
 There is three predetermined behavior you can't change for now.
@@ -30,9 +30,8 @@ To let you get or update informations on a file without have to deal with the fi
 
 Your url should look like this : http://mysite/api/resource/1/download
 
-## Examples
-These example are in Typescript.
-Note that all mains methods (except id()) of resource return a Promise.
+## Examples in typescript
+All methods returns Promise.
 ```javascript
 var api = new RestApi('http://myWebApi/api'); // don't use / at the end
 
@@ -53,7 +52,7 @@ fileResource.save({id:1, ... }); //Save only informations (not the file)
 fileResource.upload(file);       //POST
 //And if you want to do something at the end like hide an image of a loader in both case success and error
 fileResource.upload(file, () => { console.log('End!') });
-fileResource.download(1);        //GET
+fileResource.download(1);        //GET  Warning! return a Blob!
 fileResource.delete(1);
 
 //All orders is fine
@@ -76,3 +75,6 @@ Even if fetch does not behave like XMLHttpRequest because it not throw exception
 
 ## Typescript definitions
 As you could see in the root folder, there is a typescript_definitions folder you can use in your project if you use typescript.
+
+## Test
+If you want to test without creating your own project, you can

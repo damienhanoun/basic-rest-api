@@ -1,4 +1,4 @@
-var api = new RestApi('http://localhost:38937/api');
+var api = new RestApi('http://localhost/api');
 
 //api.resource<>('ressource1').getAll()
 //api.resource<>('ressource1').get(id)
@@ -9,13 +9,19 @@ var api = new RestApi('http://localhost:38937/api');
 //api.resource<>('ressource1').id(id).resource<>('ressource2')...
 
 //api.fileResource<>('ressource1').get(id)
-//api.fileResource<>('ressource1').save(file)
-//api.fileResource<>('ressource1').upload(file)
-//api.fileResource<>('ressource1').getAsBlob(id)
+//api.fileResource<>('ressource1').save(<>{id:,}})
+var input = document.getElementById('uploadDocument');
+input.addEventListener('change', function() {
+  //api.fileResource<>('ressource1').upload(input.files[0], _=>console.log('Done!'))
+});
+//api.fileResource<>('ressource1').download(id).then((blob)=>{download(blob,'name of the file')})
 //api.fileResource<>('ressource1').delete(id)
 
 //api.resource<>('ressource1').id(id).fileResource<>('ressource2')...
 
+
+
+//Some helpers to test when you get files or images
 function download(blob:Blob, name:string) {
   var a = document.createElement("a");
   a.style.display = "none";
@@ -26,4 +32,11 @@ function download(blob:Blob, name:string) {
   a.click();
   window.URL.revokeObjectURL(url);
   document.body.removeChild(a);
+}
+
+function createImg(blob: Blob, name: string) {
+    let img = document.createElement('img');
+    img.src = URL.createObjectURL(blob);
+    img.alt = name;
+    return img;
 }
