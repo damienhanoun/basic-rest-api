@@ -24,7 +24,7 @@ The first one is the Content-Type is application/json by default (when call or r
 The second one is you are forced to use id attribute (which can be string or int) on all your entities.
 
 And the third one is about the way to manage files.
-To let you get or update informations on a file without have to deal with the file itself, you can use two verbs (even if it is not a strict REST approch) :
+To let you get or update informations on a file without have to deal with the file itself, you can use two verbs (even if it is not a strict REST approach) :
  - download
  - upload
 
