@@ -5,7 +5,7 @@ This library is based on fetch so you can use Promise.
 On some navigator, you have to get a polifyll because fetch is not implemented on every brwoser yet.
 It not use loader for now which is pretty bad but it will in the futur.
 
-## Requierements
+## Requirements
 Before beginning, you must install :
 - npm : https://nodejs.org
 - gulp : `npm install gulp -g`
@@ -14,7 +14,7 @@ Before beginning, you must install :
 In the root folder :
 `npm install`
 
-and then : 
+and then :
 `gulp`
 
 ## Predetermined behaviors
