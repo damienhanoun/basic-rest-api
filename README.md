@@ -11,9 +11,10 @@ Before beginning, you must install :
 - gulp : `npm install gulp -g`
 
 ## Get dependencies and compile the project
-In the root folder :  
+In the root folder :
 `npm install`
-and then :
+
+and then : 
 `gulp`
 
 ## Predetermined behaviors
