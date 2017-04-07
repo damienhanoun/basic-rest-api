@@ -48,12 +48,12 @@ subResource.get(2); //.../resource1/1/subResource/2
 
 var file = input.files[0];
 var fileResource = api.fileResource<YourFileResource>('ressource2');
-fileResource.get(1); //Get only informations (not the file)
-fileResource.save(file); //Save only informations (not the file)
-fileResource.upload(file); //POST
+fileResource.get(1);             //Get only informations (not the file)
+fileResource.save({id:1, ... }); //Save only informations (not the file)
+fileResource.upload(file);       //POST
 //And if you want to do something at the end like hide an image of a loader in both case success and error
 fileResource.upload(file, () => { console.log('End!') });
-fileResource.download(1); //GET
+fileResource.download(1);        //GET
 fileResource.delete(1);
 
 //All orders is fine
@@ -74,5 +74,5 @@ resource.get(1, { 'X-Token': token });
 ## Error handling
 Even if fetch does not behave like XMLHttpRequest because it not throw exception when for example the server respond a 500 internal server error, I change this behavior by checking the response status and throw Exception if needed.
 
-## Use Typescript
+## Typescript definitions
 As you could see in the root folder, there is a typescript_definitions folder you can use in your project if you use typescript.
