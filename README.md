@@ -27,12 +27,13 @@ And the third one is about the way to manage files.
 To let you get or update informations on a file without have to deal with the file itself, you can use two verbs (even if it is not a strict REST approch) :
  - download
  - upload
+
 Your url should look like this : http://mysite/api/resource/1/download
 
 ## Examples
 These example are in Typescript.
 Note that all mains methods (except id()) of resource return a Promise.
-```
+```javascript
 var api = new RestApi('http://myWebApi/api'); // don't use / at the end
 
 var resource = api.resource<YourResource>('resource1');
