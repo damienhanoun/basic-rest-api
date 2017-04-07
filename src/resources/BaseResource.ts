@@ -21,7 +21,7 @@ class BaseResource<T extends Entity> {
       .then(this.handleError);
   }
 
-  save(object:T, headerExtension? : Object):Promise<TypeError> {
+  save(object:T, headerExtension? : Object):Promise<T> {
     return fetch(this.url + '/' + object.id.toString(), this.requestInit.put(object, headerExtension))
       .then(this.handleErrorWithoutReponse);
   }
