@@ -1,22 +1,22 @@
 # A very simple and basic REST API based on fetch
 
-##Description
+## Description
 This library is based on fetch so you can use Promise.
 On some navigator, you have to get a polifyll because fetch is not implemented on every brwoser yet.
 It not use loader for now which is pretty bad but it will in the futur.
 
-##Requierements
+## Requierements
 Before beginning, you must install :
 - npm : https://nodejs.org
 - gulp : npm install gulp -g
 
-##Compile the project
+## Compile the project
 Just use this command when you are in the root folder :  
 ```
 gulp
 ```
 
-##Predetermined behaviors
+## Predetermined behaviors
 There is three predetermined behavior you can't change for now.
 
 The first one is the Content-Type is application/json by default (when call or response don't include file).
@@ -29,9 +29,7 @@ To let you get or update informations on a file without have to deal with the fi
  - upload
 Your url should look like this : http://mysite/api/resource/1/download
 
-#Examples
-
-##Basics
+## Examples
 These example are in Typescript.
 Note that all mains methods (except id()) of resource return a Promise.
 ```
@@ -67,16 +65,13 @@ resource.get(1).then((resource)=>{
 }).catch((error)=>{
   //Do something with the error
 });
+
+//Extending Header (possible on all methods)
+resource.get(1, { 'X-Token': token });
 ```
 
-##Extending Header
-You can put more informations in the header if you need it on every function you can call on resource :
-```
-api.resource<YourResource>('resource1').get(1, { 'X-Token': token });
-```
-
-##Error handling
+## Error handling
 Even if fetch does not behave like XMLHttpRequest because it not throw exception when for example the server respond a 500 internal server error, I change this behavior by checking the response status and throw Exception if needed.
 
-##Use Typescript
+## Use Typescript
 As you could see in the root folder, there is a typescript_definitions folder you can use in your project if you use typescript.
