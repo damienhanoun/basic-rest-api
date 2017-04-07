@@ -76,6 +76,3 @@ Even if fetch does not behave like XMLHttpRequest because it not throw exception
 
 ## Typescript definitions
 As you could see in the root folder, there is a typescript_definitions folder you can use in your project if you use typescript.
-
-## Test
-If you want to test without creating your own project, you can
