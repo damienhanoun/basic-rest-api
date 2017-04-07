@@ -1,4 +1,4 @@
-var api = new RestApi('http://localhost:38937');
+var api = new RestApi('http://localhost:38937/api');
 
 //api.resource<Parcel>('parcels').getAll()
 //api.resource<>('ressource1').get(id)

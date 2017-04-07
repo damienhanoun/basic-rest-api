@@ -3,7 +3,6 @@ var ts = require("gulp-typescript");
 var uglify = require("gulp-uglify");
 var concat = require('gulp-concat');
 var del = require('del');
-var jasmine = require('gulp-jasmine');
 
 var typescriptConfiguration = {
   "noImplicitAny": false,
