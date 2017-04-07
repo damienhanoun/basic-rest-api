@@ -12,7 +12,7 @@ class RequestInitGenerator {
   private getJsonHeader(headerExtension?:object) : object {
     var header = { 'Content-Type': 'application/json' };
     if(headerExtension != undefined)
-      extend(headerExtension, header);
+      Helpers.extend(headerExtension, header);
     return this.getHeader(header);
   }
 

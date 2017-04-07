@@ -12,7 +12,7 @@ var RequestInitGenerator = (function () {
     RequestInitGenerator.prototype.getJsonHeader = function (headerExtension) {
         var header = { 'Content-Type': 'application/json' };
         if (headerExtension != undefined)
-            extend(headerExtension, header);
+            Helpers.extend(headerExtension, header);
         return this.getHeader(header);
     };
     RequestInitGenerator.prototype.get = function (headerExtension) {
