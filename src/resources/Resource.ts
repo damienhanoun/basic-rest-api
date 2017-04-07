@@ -4,7 +4,7 @@ class Resource<T extends Entity> extends BaseResource<T> {
       super(baseUrl, name);
     }
 
-    create(object:T, headerExtension? : object):Promise<T> {
+    create(object:T, headerExtension? : Object):Promise<T> {
       return fetch(this.url, this.requestInit.post(object, headerExtension))
         .then(this.handleError);
     }

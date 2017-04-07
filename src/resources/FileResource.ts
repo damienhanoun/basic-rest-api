@@ -4,7 +4,7 @@ class FileResource<T extends Entity> extends BaseResource<T> {
       super(baseUrl, name);
     }
 
-    upload(file: File, after: () => void = () => { }, headerExtension? : object): Promise<T> {
+    upload(file: File, after: () => void = () => { }, headerExtension? : Object): Promise<T> {
       return fetch(this.url + '/upload', this.requestInit.postFile(file, headerExtension))
         .then((response) => {
             after();
@@ -13,7 +13,7 @@ class FileResource<T extends Entity> extends BaseResource<T> {
         .then(this.handleError);
     }
 
-    download(id: string | number, headerExtension? : object): Promise<Blob> {
+    download(id: string | number, headerExtension? : Object): Promise<Blob> {
       return fetch(this.url + '/' + id.toString() + '/download', this.requestInit.getFile(headerExtension))
         .then((response: Response) => {
             if (!response.ok)

@@ -15,19 +15,19 @@ declare class RestApi extends ResourceNavigator {
 declare class BaseResource<T extends Entity> {
   constructor(baseUrl: string, name: string);
   id(id: number | string);
-  getAll(headerExtension? : object): Promise<T[]>;
-  get(id:number|string, headerExtension? : object): Promise<T>;
-  save(object:T, headerExtension? : object):Promise<T>;
-  delete(id:number|string, headerExtension? : object):Promise<any>;
+  getAll(headerExtension? : Object): Promise<T[]>;
+  get(id:number|string, headerExtension? : Object): Promise<T>;
+  save(object:T, headerExtension? : Object):Promise<T>;
+  delete(id:number|string, headerExtension? : Object):Promise<any>;
 }
 
 declare class Resource<T extends Entity> extends BaseResource<T> {
     constructor(baseUrl: string, name: string);
-    create(object:T, headerExtension? : object):Promise<T>;
+    create(object:T, headerExtension? : Object):Promise<T>;
 }
 
 declare class FileResource<T extends Entity> extends BaseResource<T> {
     constructor(baseUrl: string, name: string);
-    upload(file: File, after: () => void, headerExtension? : object): Promise<T>;
-    download(id: string | number, headerExtension? : object): Promise<Blob>;
+    upload(file: File, after: () => void, headerExtension? : Object): Promise<T>;
+    download(id: string | number, headerExtension? : Object): Promise<Blob>;
 }

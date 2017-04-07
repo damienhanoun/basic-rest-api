@@ -1,6 +1,6 @@
 class RequestInitGenerator {
 
-  private getHeader(headerExtension?:object) : object {
+  private getHeader(headerExtension?:Object) : Object {
     var header: Headers;
     if(headerExtension == undefined)
       header = new Headers();
@@ -9,21 +9,21 @@ class RequestInitGenerator {
     return header;
   }
 
-  private getJsonHeader(headerExtension?:object) : object {
+  private getJsonHeader(headerExtension?:Object) : Object {
     var header = { 'Content-Type': 'application/json' };
     if(headerExtension != undefined)
       Helpers.extend(headerExtension, header);
     return this.getHeader(header);
   }
 
-  get(headerExtension?:object) : RequestInit {
+  get(headerExtension?:Object) : RequestInit {
       return {
           method: 'GET',
           headers: this.getJsonHeader(headerExtension)
       };
   }
 
-  put(object: object, headerExtension?:object) : RequestInit {
+  put(object: Object, headerExtension?:Object) : RequestInit {
     return {
       method: 'PUT',
       headers: this.getJsonHeader(headerExtension),
@@ -31,7 +31,7 @@ class RequestInitGenerator {
     };
   }
 
-  post(object: object, headerExtension?:object) : RequestInit {
+  post(object: Object, headerExtension?:Object) : RequestInit {
     return {
       method: 'POST',
       headers: this.getJsonHeader(headerExtension),
@@ -39,14 +39,14 @@ class RequestInitGenerator {
     };
   }
 
-  delete(headerExtension?:object) : RequestInit {
+  delete(headerExtension?:Object) : RequestInit {
     return {
         method: 'DELETE',
         headers: this.getHeader(headerExtension)
     };
   }
 
-  postFile(file: File, headerExtension?:object) : RequestInit {
+  postFile(file: File, headerExtension?:Object) : RequestInit {
     var data = new FormData();
     data.append('file', file);
     return {
@@ -56,7 +56,7 @@ class RequestInitGenerator {
     };
   }
 
-  getFile(headerExtension?:object) : RequestInit {
+  getFile(headerExtension?:Object) : RequestInit {
     return {
       method: 'GET',
       headers: this.getHeader(headerExtension)
