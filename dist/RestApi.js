@@ -11,7 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 var RestApi = (function (_super) {
     __extends(RestApi, _super);
     function RestApi(baseUrl) {
-        var _this = _super.call(this, baseUrl + '/api') || this;
+        var _this = _super.call(this, baseUrl) || this;
         _this.baseUrl = baseUrl;
         return _this;
     }
