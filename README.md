@@ -2,7 +2,7 @@
 
 ## Description
 This library is based on fetch so you can use Promise.
-On some navigator, you have to get a polifyll because fetch is not implemented on every brwoser yet.
+On some navigator, you have to get a polifyll because fetch is not implemented on every browser yet.
 It not use loader for now which is pretty bad but it will in the futur.
 
 ## Requirements
