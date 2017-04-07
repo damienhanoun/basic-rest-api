@@ -18,7 +18,7 @@ and then :
 `gulp`
 
 ## Predetermined behaviors
-There is three predetermined behavior you can't change for now.
+There is three predetermined behaviors you can't change for now.
 
 The first one is the Content-Type is application/json by default (when call or response don't include file).
 
@@ -32,7 +32,7 @@ To let you get or update informations on a file without have to deal with the fi
 Your url should look like this : http://mysite/api/resource/1/download
 
 ## Examples in typescript
-All methods returns Promise.
+All methods which call the web service returns Promise.
 ```javascript
 var api = new RestApi('http://myWebApi/api'); // don't use / at the end
 
