@@ -34,7 +34,7 @@ Your url should look like this : http://mysite/api/resource/1/download
 ## Examples in typescript
 All methods which call the web service returns Promise.
 ```javascript
-var api = new RestApi('http://myWebApi/api'); // don't use / at the end
+var api = new BasicRestApi('http://myWebApi/api'); // don't use / at the end
 
 var resource = api.resource<YourResource>('resource1');
 resource.getAll();                           // .../resource1   in GET

@@ -1,6 +1,6 @@
 {
   "name": "basic-rest-api",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A basic REST api with some predefined behaviours",
   "main": "dist/main.js",
   "scripts": {

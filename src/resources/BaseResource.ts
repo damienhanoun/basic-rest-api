@@ -1,45 +1,57 @@
 class BaseResource<T extends Entity> {
-  protected url: string;
   protected requestInit : RequestInitGenerator;
 
-  constructor(baseUrl: string, name: string){
-    this.url = baseUrl + '/' + name;
+  constructor(protected url: Url){
     this.requestInit = new RequestInitGenerator();
   }
 
   id(id: number | string) {
-    return new ResourceNavigator(this.url + '/' + id);
+    return new ResourceNavigator(this.url.addId(id));
   }
 
-  getAll(headerExtension? : Object): Promise<T[]> {
-    return fetch(this.url, this.requestInit.get(headerExtension))
-      .then(this.handleError);
+  async getAll(headerExtension : Object = {}): Promise<T[]> {
+    let url = this.url.toString();
+    let requestInit = this.requestInit.get(headerExtension);
+    let response = await fetch(url, requestInit);
+    return this.handleError<T[]>(response);
   }
 
-  get(id:number|string, headerExtension? : Object): Promise<T> {
-    return fetch(this.url + '/' + id.toString(), this.requestInit.get(headerExtension))
-      .then(this.handleError);
+  async get(id:number|string, headerExtension : Object = {}): Promise<T> {
+    let url = this.url.addId(id).toString();
+    let requestInit = this.requestInit.get(headerExtension);
+    let response = await fetch(url, requestInit);
+    return this.handleError<T>(response);
   }
 
-  save(object:T, headerExtension? : Object):Promise<T> {
-    return fetch(this.url + '/' + object.id.toString(), this.requestInit.put(object, headerExtension))
-      .then(this.handleErrorWithoutReponse);
+  async save(object:T, headerExtension : Object = {}):Promise<T> {
+    let url = this.url.addId(object.id).toString();
+    let requestInit = this.requestInit.put(object, headerExtension);
+    let response = await fetch(url, requestInit);
+    return this.handleError<T>(response);
   }
 
-  delete(id:number|string, headerExtension? : Object):Promise<any> {
-    return fetch(this.url + '/' + id.toString(), this.requestInit.delete(headerExtension))
-      .then(this.handleErrorWithoutReponse);
+  async delete(id:number|string, headerExtension : Object = {}):Promise<any> {
+    let url = this.url.addId(id).toString();
+    let requestInit = this.requestInit.delete(headerExtension);
+    let response = await fetch(url, requestInit);
+    return this.handleErrorWithoutReponse(response);
   }
 
-  protected handleError(response: Response) : Object {
-    if (!response.ok)
-        throw Error(response.statusText);
-    return response.json();
+  protected handleError<U>(response: Response) : Promise<U> {
+    let promise : Promise<U>;
+
+    if (!response.ok || response.status == 204)
+        promise = Promise.reject(response.statusText);
+    else
+      promise = response.json();
+
+     return promise;
   }
 
-  protected handleErrorWithoutReponse(response: Response) : Object  {
-    if (!response.ok)
-        throw Error(response.statusText);
+  protected handleErrorWithoutReponse(response: Response) : Promise<void>  {
+    if (!response.ok || response.status == 204)
+        return Promise.reject(response.statusText);
     return Promise.resolve();
   }
+
 }

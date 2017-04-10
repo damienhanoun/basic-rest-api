@@ -1,12 +1,14 @@
 class Resource<T extends Entity> extends BaseResource<T> {
 
-    constructor(baseUrl: string, name: string) {
-      super(baseUrl, name);
+    constructor(url: Url) {
+      super(url);
     }
 
-    create(object:T, headerExtension? : Object):Promise<T> {
-      return fetch(this.url, this.requestInit.post(object, headerExtension))
-        .then(this.handleError);
+    async create(object:T, headerExtension : Object = {}):Promise<T> {
+      let url = this.url.toString();
+      let requestInit = this.requestInit.post(object, headerExtension);
+      let response = await fetch(url, requestInit);
+      return this.handleError<T>(response);
     }
 
 }

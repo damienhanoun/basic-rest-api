@@ -1,4 +1,4 @@
-var api = new RestApi('http://localhost/api');
+var api = new BasicRestApi('http://localhost/api');
 //api.resource<>('ressource1').getAll()
 //api.resource<>('ressource1').get(id)
 //api.resource<>('ressource1').create(<>{})

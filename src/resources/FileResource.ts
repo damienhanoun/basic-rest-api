@@ -1,24 +1,23 @@
 class FileResource<T extends Entity> extends BaseResource<T> {
 
-    constructor(baseUrl: string, name: string) {
-      super(baseUrl, name);
+    constructor(url: Url) {
+      super(url);
     }
 
-    upload(file: File, after: () => void = () => { }, headerExtension? : Object): Promise<T> {
-      return fetch(this.url + '/upload', this.requestInit.postFile(file, headerExtension))
-        .then((response) => {
-            after();
-            return response;
-        })
-        .then(this.handleError);
+    async upload(file: File, after: () => void = () => { }, headerExtension : Object = {}): Promise<T> {
+      let url = this.url.addVerb('upload').toString();
+      let requestInit = this.requestInit.postFile(file, headerExtension);
+      let response = await fetch(url, requestInit);
+      after();
+      return this.handleError<T>(response);
     }
 
-    download(id: string | number, headerExtension? : Object): Promise<Blob> {
-      return fetch(this.url + '/' + id.toString() + '/download', this.requestInit.getFile(headerExtension))
-        .then((response: Response) => {
-            if (!response.ok)
-                throw Error(response.statusText);
-            return response.blob();
-        });
+    async download(id: string | number, headerExtension : Object = {}): Promise<Blob> {
+      let url = this.url.addId(id).addVerb('download').toString();
+      let requestInit = this.requestInit.getFile(headerExtension);
+      let response = await fetch(url, requestInit);
+      if (!response.ok  || response.status == 204)
+          return Promise.reject(response.statusText);
+      return response.blob();
     }
 }

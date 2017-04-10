@@ -1,19 +1,10 @@
 var RequestInitGenerator = (function () {
     function RequestInitGenerator() {
     }
-    RequestInitGenerator.prototype.getHeader = function (headerExtension) {
-        var header;
-        if (headerExtension == undefined)
-            header = new Headers();
-        else
-            header = new Headers(headerExtension);
-        return header;
-    };
     RequestInitGenerator.prototype.getJsonHeader = function (headerExtension) {
         var header = { 'Content-Type': 'application/json' };
-        if (headerExtension != undefined)
-            Helpers.extend(headerExtension, header);
-        return this.getHeader(header);
+        Helpers.extend(headerExtension, header);
+        return new Headers(header);
     };
     RequestInitGenerator.prototype.get = function (headerExtension) {
         return {
@@ -38,7 +29,7 @@ var RequestInitGenerator = (function () {
     RequestInitGenerator.prototype.delete = function (headerExtension) {
         return {
             method: 'DELETE',
-            headers: this.getHeader(headerExtension)
+            headers: this.getJsonHeader(headerExtension)
         };
     };
     RequestInitGenerator.prototype.postFile = function (file, headerExtension) {
@@ -46,14 +37,14 @@ var RequestInitGenerator = (function () {
         data.append('file', file);
         return {
             method: 'POST',
-            headers: this.getHeader(headerExtension),
+            headers: new Headers(headerExtension),
             body: data
         };
     };
     RequestInitGenerator.prototype.getFile = function (headerExtension) {
         return {
             method: 'GET',
-            headers: this.getHeader(headerExtension)
+            headers: new Headers(headerExtension)
         };
     };
     return RequestInitGenerator;

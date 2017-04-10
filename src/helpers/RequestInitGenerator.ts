@@ -1,29 +1,19 @@
 class RequestInitGenerator {
 
-  private getHeader(headerExtension?:Object) : Object {
-    var header: Headers;
-    if(headerExtension == undefined)
-      header = new Headers();
-    else
-      header = new Headers(headerExtension);
-    return header;
-  }
-
-  private getJsonHeader(headerExtension?:Object) : Object {
+  private getJsonHeader(headerExtension:Object) : Object {
     var header = { 'Content-Type': 'application/json' };
-    if(headerExtension != undefined)
-      Helpers.extend(headerExtension, header);
-    return this.getHeader(header);
+    Helpers.extend(headerExtension, header);
+    return new Headers(header);
   }
 
-  get(headerExtension?:Object) : RequestInit {
+  get(headerExtension:Object) : RequestInit {
       return {
           method: 'GET',
           headers: this.getJsonHeader(headerExtension)
       };
   }
 
-  put(object: Object, headerExtension?:Object) : RequestInit {
+  put(object: Object, headerExtension:Object) : RequestInit {
     return {
       method: 'PUT',
       headers: this.getJsonHeader(headerExtension),
@@ -31,7 +21,7 @@ class RequestInitGenerator {
     };
   }
 
-  post(object: Object, headerExtension?:Object) : RequestInit {
+  post(object: Object, headerExtension:Object) : RequestInit {
     return {
       method: 'POST',
       headers: this.getJsonHeader(headerExtension),
@@ -39,27 +29,27 @@ class RequestInitGenerator {
     };
   }
 
-  delete(headerExtension?:Object) : RequestInit {
+  delete(headerExtension:Object) : RequestInit {
     return {
         method: 'DELETE',
-        headers: this.getHeader(headerExtension)
+        headers: this.getJsonHeader(headerExtension)
     };
   }
 
-  postFile(file: File, headerExtension?:Object) : RequestInit {
+  postFile(file: File, headerExtension:Object) : RequestInit {
     var data = new FormData();
     data.append('file', file);
     return {
       method: 'POST',
-      headers: this.getHeader(headerExtension),
+      headers: new Headers(headerExtension),
       body: data
     };
   }
 
-  getFile(headerExtension?:Object) : RequestInit {
+  getFile(headerExtension:Object) : RequestInit {
     return {
       method: 'GET',
-      headers: this.getHeader(headerExtension)
+      headers: new Headers(headerExtension)
     };
   }
 }

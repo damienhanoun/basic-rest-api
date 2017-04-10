@@ -8,12 +8,10 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var RestApi = (function (_super) {
-    __extends(RestApi, _super);
-    function RestApi(baseUrl) {
-        var _this = _super.call(this, baseUrl) || this;
-        _this.baseUrl = baseUrl;
-        return _this;
+var BasicRestApi = (function (_super) {
+    __extends(BasicRestApi, _super);
+    function BasicRestApi(baseUrl) {
+        return _super.call(this, new Url(baseUrl)) || this;
     }
-    return RestApi;
+    return BasicRestApi;
 }(ResourceNavigator));
