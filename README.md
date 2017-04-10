@@ -29,7 +29,7 @@ To let you get or update informations on a file without have to deal with the fi
  - download
  - upload
 
-And the fourfth is about the status 204(No-Content) which will throw an error even if fetch consider it as ok.
+And the fourth is about the status 204(No-Content) which will throw an error even if fetch consider it as ok.
 
 Your url should look like this : http://mysite/api/resource/1/download
 
