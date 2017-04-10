@@ -2,8 +2,8 @@
 
 ## Description
 This library is based on fetch so you can use Promise.
-On some navigator, you have to get a polifyll because fetch is not implemented on every browser yet.
-It not use loader for now which is pretty bad but it will in the futur.
+On some navigators, you have to get a polifyll because fetch is not implemented on every browser yet.
+It does not use loader for now which is pretty bad but it will in the futur.
 
 ## Requirements
 Before beginning, you must install :
@@ -18,16 +18,18 @@ and then :
 `gulp`
 
 ## Predetermined behaviors
-There is three predetermined behaviors you can't change for now.
+There is four predetermined behaviors you can't change for now.
 
 The first one is the Content-Type is application/json by default (when call or response don't include file).
 
-The second one is you are forced to use id attribute (which can be string or int) on all your entities.
+The second one is you are forced to use id attribute (which can be string or number) on all your entities.
 
-And the third one is about the way to manage files.
+The third one is about the way to manage files.
 To let you get or update informations on a file without have to deal with the file itself, you can use two verbs (even if it is not a strict REST approach) :
  - download
  - upload
+
+And the fourfth is about the status 204(No-Content) which will throw an error even if fetch consider it as ok.
 
 Your url should look like this : http://mysite/api/resource/1/download
 
