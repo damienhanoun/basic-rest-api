@@ -53,7 +53,7 @@ var BaseResource = (function () {
                         return [4 /*yield*/, fetch(url, requestInit)];
                     case 1:
                         response = _a.sent();
-                        return [2 /*return*/, this.handleError(response)];
+                        return [2 /*return*/, this.handleErrorForGetAll(response)];
                 }
             });
         });
@@ -108,6 +108,14 @@ var BaseResource = (function () {
                 }
             });
         });
+    };
+    BaseResource.prototype.handleErrorForGetAll = function (response) {
+        var promise;
+        if (!response.ok)
+            promise = Promise.reject(response.statusText);
+        else
+            promise = response.json();
+        return promise;
     };
     BaseResource.prototype.handleError = function (response) {
         var promise;

@@ -13,7 +13,7 @@ class BaseResource<T extends Entity> {
     let url = this.url.toString();
     let requestInit = this.requestInit.get(headerExtension);
     let response = await fetch(url, requestInit);
-    return this.handleError<T[]>(response);
+    return this.handleErrorForGetAll(response);
   }
 
   async get(id:number|string, headerExtension : Object = {}): Promise<T> {
@@ -35,6 +35,17 @@ class BaseResource<T extends Entity> {
     let requestInit = this.requestInit.delete(headerExtension);
     let response = await fetch(url, requestInit);
     return this.handleErrorWithoutReponse(response);
+  }
+
+  protected handleErrorForGetAll(response: Response) : Promise<T[]> {
+    let promise : Promise<T[]>;
+
+    if (!response.ok)
+        promise = Promise.reject(response.statusText);
+    else
+      promise = response.json();
+
+     return promise;
   }
 
   protected handleError<U>(response: Response) : Promise<U> {
