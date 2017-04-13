@@ -1,5 +1,5 @@
 import { } from '../node_modules/@types/jasmine/index.d.ts'
-import RestApi = require('../src/RestApi')
+import { RestApi } from '../src/RestApi'
 
 describe("Creating the main RestApi", () => {
 

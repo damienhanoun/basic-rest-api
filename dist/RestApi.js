@@ -10,6 +10,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 define(["require", "exports", "./resources/ResourceNavigator", "./helpers/UrlNavigator"], function (require, exports, ResourceNavigator_1, UrlNavigator_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     var RestApi = (function (_super) {
         __extends(RestApi, _super);
         function RestApi(baseUrl) {
@@ -17,5 +18,5 @@ define(["require", "exports", "./resources/ResourceNavigator", "./helpers/UrlNav
         }
         return RestApi;
     }(ResourceNavigator_1.default));
-    return RestApi;
+    exports.RestApi = RestApi;
 });

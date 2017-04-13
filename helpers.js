@@ -1,5 +1,5 @@
 //Some helpers to test when you get files or images
-function download(blob:Blob, name:string) {
+function download(blob, name) {
   var a = document.createElement("a");
   a.style.display = "none";
   document.body.appendChild(a);
@@ -11,7 +11,7 @@ function download(blob:Blob, name:string) {
   document.body.removeChild(a);
 }
 
-function createImg(blob: Blob, name: string) {
+function createImg(blob, name) {
     let img = document.createElement('img');
     img.src = URL.createObjectURL(blob);
     img.alt = name;
