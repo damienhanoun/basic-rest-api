@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Basic REST api</title>
+        <script src="helpers.js"></script>
+        <script data-main="dist/RestApi.js" src="libs/require.js"></script>
+        <script>
+        require(['RestApi'], function(RestApi){
+          var api = new RestApi('http://localhost/api');
+          //do your test here!
+
+          var input = document.getElementById('uploadDocument');
+          input.addEventListener('change', function() {
+            //input.files[0]
+          });
+        });
+        </script>
+    </head>
+    <body>
+      <input type="file" name="document" id="uploadDocument" value="Sélectionner un document" />
+    </body>
+</html>
