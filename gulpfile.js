@@ -3,38 +3,43 @@ var ts = require("gulp-typescript");
 var uglify = require("gulp-uglify");
 var concat = require('gulp-concat');
 var del = require('del');
+var jasmine = require('gulp-jasmine');
+var requirejsOptimize = require('gulp-requirejs-optimize');
 
 var typescriptConfiguration = {
   "noImplicitAny": false,
   "noEmitOnError": true,
   "target": "es5",
-  "module":"none",
+  "module":"amd",
   "lib":["dom", "es5", "es2015.promise"]
 };
 
-gulp.task('clean', function () {
+gulp.task('cleanDist', function () {
   return del("dist");
 });
 
-gulp.task('compileTs', ['clean'], function () {
-  return gulp.src(['src/**/*.ts'])
+gulp.task('compileTs', ['cleanDist'], function () {
+  return gulp.src(['src/**/*.ts', 'spec/**/*Test.ts'])
     .pipe(ts(typescriptConfiguration))
     .js
     .pipe(gulp.dest('build'));
 });
 
-gulp.task('minifyJs', ['compileTs'], function () {
-  return gulp.src(['build/**/*.js', '!build/main.js'])
-    .pipe(concat('basic-rest-api.min.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('build'));
+gulp.task('copyTest', ['compileTs'], function () {
+    return gulp.src(['build/**/*Test.js'])
+        .pipe(gulp.dest('spec'));
 });
 
-gulp.task('copyFiles', ['minifyJs'], function () {
-    return gulp.src(['src/index.html', 'build/**/*.js'])
+gulp.task('copyFiles', ['copyTest'], function () {
+    return gulp.src(['build/**/*.js', '!build/**/*Test.js'])
         .pipe(gulp.dest('dist'));
 });
 
 gulp.task('default', ['copyFiles'], function () {
   return del("build");
 });
+
+gulp.task('jasmine', () =>
+    gulp.src('spec/BasicRestApiTest.js')
+        .pipe(jasmine())
+);

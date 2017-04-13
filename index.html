@@ -6,15 +6,15 @@
         <script src="helpers.js"></script>
         <script data-main="dist/RestApi.js" src="libs/require.js"></script>
         <script>
-        require(['RestApi'], function(RestApi){
-          var api = new RestApi('http://localhost/api');
-          //do your test here!
+          require(['RestApi'], function(RestApi){
+            var api = new RestApi('http://localhost/api');
+            //do your test here!
 
-          var input = document.getElementById('uploadDocument');
-          input.addEventListener('change', function() {
-            //input.files[0]
+            var input = document.getElementById('uploadDocument');
+            input.addEventListener('change', function() {
+              //input.files[0]
+            });
           });
-        });
         </script>
     </head>
     <body>

@@ -1,7 +1,11 @@
-class BaseResource<T extends Entity> {
+import UrlNavigator from '../helpers/UrlNavigator'
+import RequestInitGenerator from '../helpers/RequestInitGenerator'
+import ResourceNavigator from './ResourceNavigator'
+
+export default class BaseResource<T extends Entity> {
   protected requestInit : RequestInitGenerator;
 
-  constructor(protected url: Url){
+  constructor(protected url: UrlNavigator){
     this.requestInit = new RequestInitGenerator();
   }
 

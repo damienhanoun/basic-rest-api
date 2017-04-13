@@ -1,19 +1,24 @@
 {
   "name": "basic-rest-api",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A basic REST api with some predefined behaviours",
-  "main": "dist/main.js",
+  "main": "dist/RestApi.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Damien Hanoun",
   "license": "ISC",
   "devDependencies": {
+    "@types/jasmine": "^2.5.47",
+    "@types/jasmine-expect": "^3.6.1",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
+    "gulp-jasmine": "^2.4.2",
     "gulp-typescript": "^3.1.6",
     "gulp-uglify": "^2.1.2",
+    "jasmine": "^2.5.3",
+    "jasmine-expect": "^3.7.0",
     "typescript": "^2.2.2"
   }
 }

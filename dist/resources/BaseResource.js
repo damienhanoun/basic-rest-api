@@ -33,102 +33,107 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var BaseResource = (function () {
-    function BaseResource(url) {
-        this.url = url;
-        this.requestInit = new RequestInitGenerator();
-    }
-    BaseResource.prototype.id = function (id) {
-        return new ResourceNavigator(this.url.addId(id));
-    };
-    BaseResource.prototype.getAll = function (headerExtension) {
-        if (headerExtension === void 0) { headerExtension = {}; }
-        return __awaiter(this, void 0, void 0, function () {
-            var url, requestInit, response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        url = this.url.toString();
-                        requestInit = this.requestInit.get(headerExtension);
-                        return [4 /*yield*/, fetch(url, requestInit)];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, this.handleErrorForGetAll(response)];
-                }
+define(["require", "exports", "../helpers/RequestInitGenerator", "./ResourceNavigator"], function (require, exports, RequestInitGenerator_1, ResourceNavigator_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var BaseResource = (function () {
+        function BaseResource(url) {
+            this.url = url;
+            this.requestInit = new RequestInitGenerator_1.default();
+        }
+        BaseResource.prototype.id = function (id) {
+            return new ResourceNavigator_1.default(this.url.addId(id));
+        };
+        BaseResource.prototype.getAll = function (headerExtension) {
+            if (headerExtension === void 0) { headerExtension = {}; }
+            return __awaiter(this, void 0, void 0, function () {
+                var url, requestInit, response;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            url = this.url.toString();
+                            requestInit = this.requestInit.get(headerExtension);
+                            return [4 /*yield*/, fetch(url, requestInit)];
+                        case 1:
+                            response = _a.sent();
+                            return [2 /*return*/, this.handleErrorForGetAll(response)];
+                    }
+                });
             });
-        });
-    };
-    BaseResource.prototype.get = function (id, headerExtension) {
-        if (headerExtension === void 0) { headerExtension = {}; }
-        return __awaiter(this, void 0, void 0, function () {
-            var url, requestInit, response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        url = this.url.addId(id).toString();
-                        requestInit = this.requestInit.get(headerExtension);
-                        return [4 /*yield*/, fetch(url, requestInit)];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, this.handleError(response)];
-                }
+        };
+        BaseResource.prototype.get = function (id, headerExtension) {
+            if (headerExtension === void 0) { headerExtension = {}; }
+            return __awaiter(this, void 0, void 0, function () {
+                var url, requestInit, response;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            url = this.url.addId(id).toString();
+                            requestInit = this.requestInit.get(headerExtension);
+                            return [4 /*yield*/, fetch(url, requestInit)];
+                        case 1:
+                            response = _a.sent();
+                            return [2 /*return*/, this.handleError(response)];
+                    }
+                });
             });
-        });
-    };
-    BaseResource.prototype.save = function (object, headerExtension) {
-        if (headerExtension === void 0) { headerExtension = {}; }
-        return __awaiter(this, void 0, void 0, function () {
-            var url, requestInit, response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        url = this.url.addId(object.id).toString();
-                        requestInit = this.requestInit.put(object, headerExtension);
-                        return [4 /*yield*/, fetch(url, requestInit)];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, this.handleError(response)];
-                }
+        };
+        BaseResource.prototype.save = function (object, headerExtension) {
+            if (headerExtension === void 0) { headerExtension = {}; }
+            return __awaiter(this, void 0, void 0, function () {
+                var url, requestInit, response;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            url = this.url.addId(object.id).toString();
+                            requestInit = this.requestInit.put(object, headerExtension);
+                            return [4 /*yield*/, fetch(url, requestInit)];
+                        case 1:
+                            response = _a.sent();
+                            return [2 /*return*/, this.handleError(response)];
+                    }
+                });
             });
-        });
-    };
-    BaseResource.prototype.delete = function (id, headerExtension) {
-        if (headerExtension === void 0) { headerExtension = {}; }
-        return __awaiter(this, void 0, void 0, function () {
-            var url, requestInit, response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        url = this.url.addId(id).toString();
-                        requestInit = this.requestInit.delete(headerExtension);
-                        return [4 /*yield*/, fetch(url, requestInit)];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, this.handleErrorWithoutReponse(response)];
-                }
+        };
+        BaseResource.prototype.delete = function (id, headerExtension) {
+            if (headerExtension === void 0) { headerExtension = {}; }
+            return __awaiter(this, void 0, void 0, function () {
+                var url, requestInit, response;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            url = this.url.addId(id).toString();
+                            requestInit = this.requestInit.delete(headerExtension);
+                            return [4 /*yield*/, fetch(url, requestInit)];
+                        case 1:
+                            response = _a.sent();
+                            return [2 /*return*/, this.handleErrorWithoutReponse(response)];
+                    }
+                });
             });
-        });
-    };
-    BaseResource.prototype.handleErrorForGetAll = function (response) {
-        var promise;
-        if (!response.ok)
-            promise = Promise.reject(response.statusText);
-        else
-            promise = response.json();
-        return promise;
-    };
-    BaseResource.prototype.handleError = function (response) {
-        var promise;
-        if (!response.ok || response.status == 204)
-            promise = Promise.reject(response.statusText);
-        else
-            promise = response.json();
-        return promise;
-    };
-    BaseResource.prototype.handleErrorWithoutReponse = function (response) {
-        if (!response.ok || response.status == 204)
-            return Promise.reject(response.statusText);
-        return Promise.resolve();
-    };
-    return BaseResource;
-}());
+        };
+        BaseResource.prototype.handleErrorForGetAll = function (response) {
+            var promise;
+            if (!response.ok)
+                promise = Promise.reject(response.statusText);
+            else
+                promise = response.json();
+            return promise;
+        };
+        BaseResource.prototype.handleError = function (response) {
+            var promise;
+            if (!response.ok || response.status == 204)
+                promise = Promise.reject(response.statusText);
+            else
+                promise = response.json();
+            return promise;
+        };
+        BaseResource.prototype.handleErrorWithoutReponse = function (response) {
+            if (!response.ok || response.status == 204)
+                return Promise.reject(response.statusText);
+            return Promise.resolve();
+        };
+        return BaseResource;
+    }());
+    exports.default = BaseResource;
+});

@@ -7,7 +7,7 @@ declare class ResourceNavigator {
   fileResource<T extends Entity>(resourceName: string);
 }
 
-declare class BasicRestApi extends ResourceNavigator {
+declare class RestApi extends ResourceNavigator {
 	constructor(baseUrl: string);
 }
 

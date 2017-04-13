@@ -43,27 +43,32 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var Resource = (function (_super) {
-    __extends(Resource, _super);
-    function Resource(url) {
-        return _super.call(this, url) || this;
-    }
-    Resource.prototype.create = function (object, headerExtension) {
-        if (headerExtension === void 0) { headerExtension = {}; }
-        return __awaiter(this, void 0, void 0, function () {
-            var url, requestInit, response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        url = this.url.toString();
-                        requestInit = this.requestInit.post(object, headerExtension);
-                        return [4 /*yield*/, fetch(url, requestInit)];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, this.handleError(response)];
-                }
+define(["require", "exports", "./BaseResource"], function (require, exports, BaseResource_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var Resource = (function (_super) {
+        __extends(Resource, _super);
+        function Resource(url) {
+            return _super.call(this, url) || this;
+        }
+        Resource.prototype.create = function (object, headerExtension) {
+            if (headerExtension === void 0) { headerExtension = {}; }
+            return __awaiter(this, void 0, void 0, function () {
+                var url, requestInit, response;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            url = this.url.toString();
+                            requestInit = this.requestInit.post(object, headerExtension);
+                            return [4 /*yield*/, fetch(url, requestInit)];
+                        case 1:
+                            response = _a.sent();
+                            return [2 /*return*/, this.handleError(response)];
+                    }
+                });
             });
-        });
-    };
-    return Resource;
-}(BaseResource));
+        };
+        return Resource;
+    }(BaseResource_1.default));
+    exports.default = Resource;
+});

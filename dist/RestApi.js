@@ -8,10 +8,14 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var BasicRestApi = (function (_super) {
-    __extends(BasicRestApi, _super);
-    function BasicRestApi(baseUrl) {
-        return _super.call(this, new Url(baseUrl)) || this;
-    }
-    return BasicRestApi;
-}(ResourceNavigator));
+define(["require", "exports", "./resources/ResourceNavigator", "./helpers/UrlNavigator"], function (require, exports, ResourceNavigator_1, UrlNavigator_1) {
+    "use strict";
+    var RestApi = (function (_super) {
+        __extends(RestApi, _super);
+        function RestApi(baseUrl) {
+            return _super.call(this, new UrlNavigator_1.default(baseUrl)) || this;
+        }
+        return RestApi;
+    }(ResourceNavigator_1.default));
+    return RestApi;
+});

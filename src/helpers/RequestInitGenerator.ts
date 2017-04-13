@@ -1,8 +1,10 @@
-class RequestInitGenerator {
+import extend from './Helpers'
+
+export default class RequestInitGenerator {
 
   private getJsonHeader(headerExtension:Object) : Object {
     var header = { 'Content-Type': 'application/json' };
-    Helpers.extend(headerExtension, header);
+    extend(headerExtension, header);
     return new Headers(header);
   }
 

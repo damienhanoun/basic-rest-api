@@ -43,48 +43,53 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var FileResource = (function (_super) {
-    __extends(FileResource, _super);
-    function FileResource(url) {
-        return _super.call(this, url) || this;
-    }
-    FileResource.prototype.upload = function (file, after, headerExtension) {
-        if (after === void 0) { after = function () { }; }
-        if (headerExtension === void 0) { headerExtension = {}; }
-        return __awaiter(this, void 0, void 0, function () {
-            var url, requestInit, response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        url = this.url.addVerb('upload').toString();
-                        requestInit = this.requestInit.postFile(file, headerExtension);
-                        return [4 /*yield*/, fetch(url, requestInit)];
-                    case 1:
-                        response = _a.sent();
-                        after();
-                        return [2 /*return*/, this.handleError(response)];
-                }
+define(["require", "exports", "./BaseResource"], function (require, exports, BaseResource_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var FileResource = (function (_super) {
+        __extends(FileResource, _super);
+        function FileResource(url) {
+            return _super.call(this, url) || this;
+        }
+        FileResource.prototype.upload = function (file, after, headerExtension) {
+            if (after === void 0) { after = function () { }; }
+            if (headerExtension === void 0) { headerExtension = {}; }
+            return __awaiter(this, void 0, void 0, function () {
+                var url, requestInit, response;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            url = this.url.addVerb('upload').toString();
+                            requestInit = this.requestInit.postFile(file, headerExtension);
+                            return [4 /*yield*/, fetch(url, requestInit)];
+                        case 1:
+                            response = _a.sent();
+                            after();
+                            return [2 /*return*/, this.handleError(response)];
+                    }
+                });
             });
-        });
-    };
-    FileResource.prototype.download = function (id, headerExtension) {
-        if (headerExtension === void 0) { headerExtension = {}; }
-        return __awaiter(this, void 0, void 0, function () {
-            var url, requestInit, response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        url = this.url.addId(id).addVerb('download').toString();
-                        requestInit = this.requestInit.getFile(headerExtension);
-                        return [4 /*yield*/, fetch(url, requestInit)];
-                    case 1:
-                        response = _a.sent();
-                        if (!response.ok || response.status == 204)
-                            return [2 /*return*/, Promise.reject(response.statusText)];
-                        return [2 /*return*/, response.blob()];
-                }
+        };
+        FileResource.prototype.download = function (id, headerExtension) {
+            if (headerExtension === void 0) { headerExtension = {}; }
+            return __awaiter(this, void 0, void 0, function () {
+                var url, requestInit, response;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            url = this.url.addId(id).addVerb('download').toString();
+                            requestInit = this.requestInit.getFile(headerExtension);
+                            return [4 /*yield*/, fetch(url, requestInit)];
+                        case 1:
+                            response = _a.sent();
+                            if (!response.ok || response.status == 204)
+                                return [2 /*return*/, Promise.reject(response.statusText)];
+                            return [2 /*return*/, response.blob()];
+                    }
+                });
             });
-        });
-    };
-    return FileResource;
-}(BaseResource));
+        };
+        return FileResource;
+    }(BaseResource_1.default));
+    exports.default = FileResource;
+});

@@ -1,6 +1,10 @@
-class ResourceNavigator {
+import UrlNavigator from '../helpers/UrlNavigator'
+import Resource from './Resource'
+import FileResource from './Resource'
 
-    constructor(private url: Url) {}
+export default class ResourceNavigator {
+
+    constructor(private url: UrlNavigator) {}
 
     resource<T extends Entity>(resourceName: string) {
         return new Resource<T>(this.url.addResource(resourceName));

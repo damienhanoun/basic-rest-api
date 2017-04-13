@@ -1,6 +1,9 @@
-class FileResource<T extends Entity> extends BaseResource<T> {
+import BaseResource from './BaseResource'
+import UrlNavigator from '../helpers/UrlNavigator'
 
-    constructor(url: Url) {
+export default class FileResource<T extends Entity> extends BaseResource<T> {
+
+    constructor(url: UrlNavigator) {
       super(url);
     }
 
