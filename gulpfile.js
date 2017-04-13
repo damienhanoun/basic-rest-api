@@ -39,7 +39,7 @@ gulp.task('default', ['copyFiles'], function () {
   return del("build");
 });
 
-gulp.task('jasmine', () =>
-    gulp.src('spec/BasicRestApiTest.js')
+gulp.task('jasmine', function () {
+    gulp.src('spec/RestApiTest.js')
         .pipe(jasmine())
-);
+});

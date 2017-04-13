@@ -2,6 +2,9 @@
   "name": "basic-rest-api",
   "version": "0.0.4",
   "description": "A basic REST api with some predefined behaviours",
+  "keywords": [
+    "rest",
+  ],
   "main": "dist/RestApi.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
