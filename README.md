@@ -33,7 +33,7 @@ There is four predetermined behaviors you can't change for now :
 * The status 204(No-Content) will throw an error even if fetch consider it as ok.
 
 ## Typescript example
-Here is some basics usage.
+Here is some basics usage :
 ```javascript
 var api = new RestApi('http://myWebApi/api'); // don't use / at the end
 
@@ -50,7 +50,7 @@ resource.save(<YourResource>{ id:1, ... }); //PUT
 resource.delete(1); //DELETE
 ```
 
-And some others dealing with files.
+And some others dealing with files :
 ```javascript
 var file = input.files[0];
 var fileResource = api.fileResource<YourFileResource>('ressource2');
@@ -70,38 +70,35 @@ fileResource.save({id:1, ... }); //PUT (not the file)
 fileResource.delete(1); //DELETE
 ```
 
-You can have as many sub resources as you want.
+You can have as many sub resources as you want :
 ```javascript
 //.../universes/1/planetes/Earth/humans/damien_hanoun
 let me: Human = await api.resource('universes').id(1)
                          .resource('planetes').id('Earth')
-                         .resource<Human>('humans').id('damien_hanoun');
+                         .resource<Human>('humans').get('damien_hanoun');
 ```
 
-In the order you want.
-Here fileResource is before resource.
+In the order you want :
 ```javascript
 //.../books/1/pages/1/paragraphs/1
 let firstParagraph: string = api.fileResource('books').id(1)
                                 .fileResource('pages').id(1)
-                                .resource<string>('paragraphs').id(1);
+                                .resource<string>('paragraphs').get(1);
 ```
 
-You can extend header on each method like this.
+You can extend header on each method like this :
 ```javascript
 resource.get(1, { 'X-Token': token });
 ```
 
-And finally, get the result.
+And finally, get the result (which is a promise) :
 ```javascript
-//And then, use Promise!
 resource.get(1).then((resource)=>{
   //Do something with the resource
 }).catch((error)=>{
   //Do something with the error
 });
-
-//Or use await in async function
+//Or
 try {
   let resource = await resource.get(1);
   //Do something with the resource
