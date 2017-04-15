@@ -32,38 +32,68 @@ There is four predetermined behaviors you can't change for now :
   * upload
 * The status 204(No-Content) will throw an error even if fetch consider it as ok.
 
-## Examples in typescript
-All methods which call the web service returns Promise.
+## Typescript example
+Here is some basics usage.
 ```javascript
-var api = new BasicRestApi('http://myWebApi/api'); // don't use / at the end
+var api = new RestApi('http://myWebApi/api'); // don't use / at the end
 
 var resource = api.resource<YourResource>('resource1');
-resource.getAll();                           // .../resource1   in GET
-resource.get(1);                             // .../resource1/1 in GET
-resource.create(<YourResource>{ ... });      // .../resource1   in POST
-resource.save(<YourResource>{ id:1, ... });  // .../resource1/1 in PUT
-resource.delete(1);                          // .../resource1/1 in DELETE
+//.../resource1
+resource.getAll(); //GET      
+//.../resource1/1
+resource.get(1); //GET
+//.../resource1
+resource.create(<YourResource>{ ... }); //POST
+//.../resource1/1
+resource.save(<YourResource>{ id:1, ... }); //PUT
+//.../resource1
+resource.delete(1); //DELETE
+```
 
-var subResource = resource.id(1).resource<YourSubResource>('subResource');
-subResource.get(2); //.../resource1/1/subResource/2
-
+And some others dealing with files.
+```javascript
 var file = input.files[0];
 var fileResource = api.fileResource<YourFileResource>('ressource2');
-fileResource.get(1);             //Get only informations (not the file)
-fileResource.save({id:1, ... }); //Save only informations (not the file)
-fileResource.upload(file);       //POST
+//.../ressource2
+fileResource.getAll(); //GET (not the files)
+//.../ressource2/1
+fileResource.get(1); //GET (not the file)
+//.../ressource2/1/download
+fileResource.download(1); //GET (return a Promise<Blob>)
+//.../ressource2/upload
+fileResource.upload(file); //POST
 //And if you want to do something at the end like hide an image of a loader in both case success and error
 fileResource.upload(file, () => { console.log('End!') });
-fileResource.download(1);        //GET  Warning! return a Blob!
-fileResource.delete(1);
+//.../ressource2/1
+fileResource.save({id:1, ... }); //PUT (not the file)
+//.../ressource2/1
+fileResource.delete(1); //DELETE
+```
 
-//All orders is fine
-fileResource.id(1).resource<YourSubResource>('subResource');
-resource.id(1).fileResource<YourSubFileResource>('subFileResource');
+You can have as many sub resources as you want.
+```javascript
+//.../universes/1/planetes/Earth/humans/damien_hanoun
+let me: Human = await api.resource('universes').id(1)
+                         .resource('planetes').id('Earth')
+                         .resource<Human>('humans').id('damien_hanoun');
+```
 
-//Extending Header (possible on all methods)
+In the order you want.
+Here fileResource is before resource.
+```javascript
+//.../books/1/pages/1/paragraphs/1
+let firstParagraph: string = api.fileResource('books').id(1)
+                                .fileResource('pages').id(1)
+                                .resource<string>('paragraphs').id(1);
+```
+
+You can extend header on each method like this.
+```javascript
 resource.get(1, { 'X-Token': token });
+```
 
+And finally, get the result.
+```javascript
 //And then, use Promise!
 resource.get(1).then((resource)=>{
   //Do something with the resource
