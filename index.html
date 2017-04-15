@@ -7,12 +7,12 @@
         <script src="libs/promise.min.js"></script>
         <script src="libs/fetch.js"></script>
         <script src="libs/require.js"></script>
-        <script src="dist/basic-rest-api.js"></script>
+        <script src="dist/basic-rest-api.min.js"></script>
         <script>
           require(['basic-rest-api'], function(RestApi){
             var api = new RestApi('http://localhost/api');
             //do your test here!
-            
+
             var input = document.getElementById('uploadDocument');
             input.addEventListener('change', function() {
               //input.files[0]
