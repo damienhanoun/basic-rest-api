@@ -1,36 +1,36 @@
 # A very simple and basic REST API based on fetch
 
 ## Description
-This library is based on fetch so you can use Promise.
-On some navigators, you have to get a polifyll because fetch is not implemented on every browser yet.
+This library let you call urls using REST principles in a very simple way.
 
 ## Requirements
 Before beginning, you must install :
 - npm : https://nodejs.org
-- gulp : `npm install gulp -g`
 
-## Get dependencies and compile the project
-In the root folder :
-`npm install`
+As these two, are not supported on all browser, you will need to get a polyfill :
+- fetch : https://github.com/github/fetch
+- Promise : https://github.com/taylorhakes/promise-polyfill
 
-and then :
-`gulp`
+## Get dependencies
+In the root folder, run the following command
+```
+npm install
+```
+
+## Compile the project
+This library is compiled with webpack 2, so you can run the following command
+```
+npm run build
+```
 
 ## Predetermined behaviors
-There is four predetermined behaviors you can't change for now.
-
-The first one is the Content-Type is application/json by default (when call or response don't include file).
-
-The second one is you are forced to use id attribute (which can be string or number) on all your entities.
-
-The third one is about the way to manage files.
-To let you get or update informations on a file without have to deal with the file itself, you can use two verbs (even if it is not a strict REST approach) :
- - download
- - upload
-
-And the fourth is about the status 204(No-Content) which will throw an error even if fetch consider it as ok.
-
-Your url should look like this : http://mysite/api/resource/1/download
+There is four predetermined behaviors you can't change for now :
+* The Content-Type is application/json by default (when call or response don't include file).
+* You are forced to use id attribute (which can be string or number) on all your entities.
+* There are two verbs to manage file (even if it is not a strict REST approach) :
+  * download
+  * upload
+* The status 204(No-Content) will throw an error even if fetch consider it as ok.
 
 ## Examples in typescript
 All methods which call the web service returns Promise.
@@ -61,6 +61,9 @@ fileResource.delete(1);
 fileResource.id(1).resource<YourSubResource>('subResource');
 resource.id(1).fileResource<YourSubFileResource>('subFileResource');
 
+//Extending Header (possible on all methods)
+resource.get(1, { 'X-Token': token });
+
 //And then, use Promise!
 resource.get(1).then((resource)=>{
   //Do something with the resource
@@ -68,8 +71,13 @@ resource.get(1).then((resource)=>{
   //Do something with the error
 });
 
-//Extending Header (possible on all methods)
-resource.get(1, { 'X-Token': token });
+//Or use await in async function
+try {
+  let resource = await resource.get(1);
+  //Do something with the resource
+} catch(error) {
+  //Do something with the error
+}
 ```
 
 ## Error handling
@@ -77,3 +85,6 @@ Even if fetch does not behave like XMLHttpRequest because it not throw exception
 
 ## Typescript definitions
 As you could see in the root folder, there is a typescript_definitions folder you can use in your project if you use typescript.
+
+## Test
+Just go in index.html and try it yourself.
