@@ -9,6 +9,7 @@ module.exports = {
     library:'basic-rest-api',
     libraryTarget: 'amd'
   },
+  watch:true,
   module: {
     rules: [{
       test: /\.ts$/,
