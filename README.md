@@ -5,11 +5,11 @@ This library let you call urls using REST principles in a very simple way.
 
 ## Requirements
 Before beginning, you must install :
-- npm : https://nodejs.org
+* npm : https://nodejs.org
 
 As these two, are not supported on all browser, you will need to get a polyfill :
-- fetch : https://github.com/github/fetch
-- Promise : https://github.com/taylorhakes/promise-polyfill
+* fetch : https://github.com/github/fetch
+* Promise : https://github.com/taylorhakes/promise-polyfill
 
 ## Get dependencies
 In the root folder, run the following command
@@ -18,10 +18,9 @@ npm install
 ```
 
 ## Compile the project
-This library is compiled with webpack 2, so you can run the following command
-```
-npm run build
-```
+This library is compiled with webpack 2, so you can run the following commands :
+* For development : `npm run build:dev`
+* For production : `npm run build:dist`
 
 ## Predetermined behaviors
 There is four predetermined behaviors you can't change for now :

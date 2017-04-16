@@ -1,25 +1,5 @@
-var path = require('path');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+function buildConfig(env) {
+  return require('./webpackConfigs/' + env + '.js')(env)
+}
 
-module.exports = {
-  entry: './src/RestApi.ts',
-  output: {
-    filename: 'basic-rest-api.min.js',
-    path: path.resolve(__dirname, 'dist'),
-    library:'basic-rest-api',
-    libraryTarget: 'amd'
-  },
-  watch:true,
-  module: {
-    rules: [{
-      test: /\.ts$/,
-      loader: 'ts-loader'
-    }]
-  },
-  resolve: {
-    extensions: ['.ts']
-  },
-  plugins: [
-    new UglifyJSPlugin()
-  ]
-};
+module.exports = buildConfig;
