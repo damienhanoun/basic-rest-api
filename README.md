@@ -7,7 +7,7 @@ This library let you call urls using REST principles in a very simple way.
 Before beginning, you must install :
 * npm : https://nodejs.org
 
-As these two, are not supported on all browser, you will need to get a polyfill :
+As these two, are not supported on all browsers, you will need to get a polyfill :
 * fetch : https://github.com/github/fetch
 * Promise : https://github.com/taylorhakes/promise-polyfill
 
@@ -80,9 +80,9 @@ let me: Human = await api.resource('universes').id(1)
 In the order you want :
 ```javascript
 //.../books/1/pages/1/paragraphs/1
-let firstParagraph: string = api.fileResource('books').id(1)
-                                .fileResource('pages').id(1)
-                                .resource<string>('paragraphs').get(1);
+let firstParagraph: string = await api.fileResource('books').id(1)
+                                      .fileResource('pages').id(1)
+                                      .resource<string>('paragraphs').get(1);
 ```
 
 You can extend header on each method like this :
