@@ -1,6 +1,6 @@
 import UrlNavigator from '../helpers/UrlNavigator'
 import Resource from './Resource'
-import FileResource from './Resource'
+import FileResource from './FileResource'
 
 export default class ResourceNavigator {
 
