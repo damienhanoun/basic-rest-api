@@ -3,8 +3,8 @@ interface Entity {
 }
 
 declare class ResourceNavigator {
-  resource<T extends Entity>(resourceName: string);
-  fileResource<T extends Entity>(resourceName: string);
+  resource<T extends Entity>(resourceName: string) : Resource<T>;
+  fileResource<T extends Entity>(resourceName: string) : FileResource<T>;
 }
 
 declare class RestApi extends ResourceNavigator {
