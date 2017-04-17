@@ -12,7 +12,7 @@ declare class RestApi extends ResourceNavigator {
 }
 
 declare class BaseResource<T extends Entity> {
-  id(id: number | string);
+  id(id: number | string): ResourceNavigator;
   getAll(headerExtension? : Object): Promise<T[]>;
   get(id:number|string, headerExtension? : Object): Promise<T>;
   save(object:T, headerExtension? : Object):Promise<T>;
