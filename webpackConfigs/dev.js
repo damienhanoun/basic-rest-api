@@ -5,7 +5,7 @@ var path = require('path');
 
 module.exports = function (env) {
   return webpackMerge(commonConfig, {
-    entry: './src/RestApi.ts',
+    entry: './src/index.ts',
     devtool: 'inline-source-map',
     output: {
         filename: 'basic-rest-api.js',
