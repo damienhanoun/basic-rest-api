@@ -18,6 +18,6 @@
     "webpack": "^2.4.1",
     "webpack-merge":"^4.1.0"
   },
-  "main": "dist/RestApi.js",
-  "module": "dist/RestApi.js"
+  "main": "dist/basic-rest-api.js",
+  "module": "dist/basic-rest-api.js"
 }
