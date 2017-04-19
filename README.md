@@ -38,35 +38,39 @@ var api = new RestApi('http://myWebApi/api'); // don't use / at the end
 
 var resource = api.resource<YourResource>('resource1');
 //.../resource1
-resource.getAll(); //GET      
+resource.getAll();     
 //.../resource1/1
-resource.get(1); //GET
+resource.get(1);
 //.../resource1
-resource.create(<YourResource>{ ... }); //POST
+resource.post(<YourResource>{ ... });
 //.../resource1/1
-resource.save(<YourResource>{ id:1, ... }); //PUT
+resource.put(<YourResource>{ id:1, ... });
 //.../resource1
-resource.delete(1); //DELETE
+resource.delete(1);
 ```
 
 And some others dealing with files :
 ```javascript
 var file = input.files[0];
 var fileResource = api.fileResource<YourFileResource>('ressource2');
+
+//Deal with file information (not the file itself)
 //.../ressource2
-fileResource.getAll(); //GET (not the files)
+fileResource.getAll();
 //.../ressource2/1
-fileResource.get(1); //GET (not the file)
+fileResource.get(1);
+//.../ressource2/1
+fileResource.put({id:1, ... });
+//.../ressource2/1
+fileResource.delete(1);
+
+//Deal with the file
 //.../ressource2/1/download
 fileResource.download(1); //GET (return a Promise<Blob>)
 //.../ressource2/upload
 fileResource.upload(file); //POST
 //And if you want to do something at the end like hide an image of a loader in both case success and error
 fileResource.upload(file, () => { console.log('End!') });
-//.../ressource2/1
-fileResource.save({id:1, ... }); //PUT (not the file)
-//.../ressource2/1
-fileResource.delete(1); //DELETE
 ```
 
 You can have as many sub resources as you want :
@@ -97,7 +101,7 @@ resource.get(1).then((resource)=>{
 }).catch((error)=>{
   //Do something with the error
 });
-//Or
+//Or (in an async function)
 try {
   let resource = await resource.get(1);
   //Do something with the resource

@@ -27,7 +27,7 @@ export default class BaseResource<T extends Entity> {
     return this.handleError<T>(response);
   }
 
-  async save(object:T, headerExtension : Object = {}):Promise<T> {
+  async put(object:T, headerExtension : Object = {}):Promise<T> {
     let url = this.url.addId(object.id).toString();
     let requestInit = this.requestInit.put(object, headerExtension);
     let response = await fetch(url, requestInit);
