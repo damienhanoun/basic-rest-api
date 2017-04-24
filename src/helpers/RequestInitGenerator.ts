@@ -4,7 +4,7 @@ export default class RequestInitGenerator {
 
   private getJsonHeader(headerExtension:Object) : Object {
     var header = { 'Content-Type': 'application/json' };
-    extend(headerExtension, header);
+    extend(header, headerExtension);
     return new Headers(header);
   }
 
