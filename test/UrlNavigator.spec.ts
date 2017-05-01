@@ -27,7 +27,7 @@ describe('UrlNavigator', () => {
     .toBe('https://localhost/api/resource/download');
   });
 
-  it('should add the verb to url', () => {
+  it('should add the resource to url', () => {
     let urlNavigator = new UrlNavigator('https://localhost/api');
     expect(urlNavigator.addResource('resource').toString())
     .toBe('https://localhost/api/resource');
