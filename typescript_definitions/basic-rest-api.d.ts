@@ -15,12 +15,12 @@ declare class BaseResource<T extends Entity> {
   id(id: number | string): ResourceNavigator;
   getAll(headerExtension? : Object): Promise<T[]>;
   get(id:number|string, headerExtension? : Object): Promise<T>;
-  save(object:T, headerExtension? : Object):Promise<T>;
+  put(object:T, headerExtension? : Object):Promise<T>;
   delete(id:number|string, headerExtension? : Object):Promise<void>;
 }
 
 declare class Resource<T extends Entity> extends BaseResource<T> {
-    create(object:T, headerExtension? : Object):Promise<T>;
+    post(object:T, headerExtension? : Object):Promise<T>;
 }
 
 declare class FileResource<T extends Entity> extends BaseResource<T> {

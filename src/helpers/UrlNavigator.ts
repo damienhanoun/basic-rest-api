@@ -1,10 +1,8 @@
-import InvalidUrlException from '../exceptions/InvalidUrlException'
-
 export default class UrlNavigator {
 
   constructor(private baseUrl : string) {
     if(!this.isURL(baseUrl))
-      throw new InvalidUrlException();
+      throw Error("The format of the url is invalid");
   }
 
   addId(id:string|number) : UrlNavigator {
