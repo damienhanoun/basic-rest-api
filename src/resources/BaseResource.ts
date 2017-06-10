@@ -44,8 +44,10 @@ export default class BaseResource<T extends Entity> {
   protected handleErrorForGetAll(response: Response) : Promise<T[]> {
     let promise : Promise<T[]>;
 
-    if (!response.ok)
+    if (!response.ok && response.status !== 204)
         promise = Promise.reject(response.statusText);
+    else if (response.status === 204)
+      promise = Promise.resolve([]);
     else
       promise = response.json();
 
@@ -55,7 +57,7 @@ export default class BaseResource<T extends Entity> {
   protected handleError<U>(response: Response) : Promise<U> {
     let promise : Promise<U>;
 
-    if (!response.ok || response.status == 204)
+    if (!response.ok || response.status === 204)
         promise = Promise.reject(response.statusText);
     else
       promise = response.json();
