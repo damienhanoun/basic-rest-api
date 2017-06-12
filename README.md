@@ -124,7 +124,7 @@ let api = new BasicRestApi('http://localhost');
  });
  ```
 
-### typescript
+### typescript (not available yet)
 Definitions are in types/basic-rest-api/index.d.ts.
 For now, it is better to copy them but soon I hope it will be possible to use it like this :
 ```javascript
