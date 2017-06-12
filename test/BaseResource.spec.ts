@@ -3,54 +3,12 @@ import {} from 'sinon'
 import UrlNavigator from '../src/helpers/UrlNavigator'
 import ResourceNavigator from '../src/resources/ResourceNavigator'
 import BaseResource from '../src/resources/BaseResource'
+import { fetchReturn, ok, noContent, error } from './testHelpers'
 
 describe('BaseResource', () => {
 
   let urlNavigator = new UrlNavigator('http://localhost/ressource');
   let baseResource = new BaseResource(urlNavigator);
-
-  function ok(body) {
-    let mockResponse = new Response(JSON.stringify(body), {
-      status: 200,
-      headers: {
-        'Content-type': 'application/json'
-      }
-    });
-
-    return Promise.resolve(mockResponse);
-  }
-
-  function noContent() {
-    let mockResponse = new Response(undefined, {
-      status: 204,
-      statusText:'No Content',
-      headers: {
-        'Content-type': 'application/json'
-      }
-    });
-
-    return Promise.resolve(mockResponse);
-  }
-
-  function error(status, statusText) {
-    var mockResponse = new Response(undefined, {
-      status: status,
-      statusText:statusText,
-      headers: {
-        'Content-type': 'application/json'
-      }
-    });
-
-    return Promise.resolve(mockResponse);
-  }
-
-  function fetchReturn(returnValue:object){
-    (<any>(window.fetch)).returns(returnValue);
-  }
-
-  function fetchWithArgsReturn(firstParameter, secondParameter, returnValue:object){
-    (<any>(window.fetch)).withArgs(firstParameter, secondParameter).returns(returnValue);
-  }
 
   beforeEach(() => {
     sinon.stub(window, 'fetch');
@@ -78,7 +36,7 @@ describe('BaseResource', () => {
     catch(error) { expect(error).toBe("Internal Server Error"); }
   });
 
-  it('should not throw an Error if status is 204(No Content) when getAll is called', async () => {
+  it('should return an empty list if status is 204(No Content) when getAll is called', async () => {
     fetchReturn(noContent());
     let result = await baseResource.getAll();
     expect(result.length).toBe(0);

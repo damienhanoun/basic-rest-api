@@ -15,6 +15,22 @@ module.exports = function (wallaby) {
 
    env: {
       kind: 'electron'
+    },
+
+    compilers:{
+      '**/*.ts': wallaby.compilers.typeScript({
+        "compilerOptions": {
+          "module":"amd",
+          "noImplicitAny": false,
+          "noEmitOnError": true,
+          "target": "es5",
+          "lib":["dom", "es5", "es2015.promise"]
+        },
+        "include": [
+          "src/**/*.ts",
+          "test/**/*.ts"
+        ]
+      })
     }
 
   };
