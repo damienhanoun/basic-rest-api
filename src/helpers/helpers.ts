@@ -1,4 +1,4 @@
-export default function extend (destination:Object, source:Object) {
-  for (var key in source)
-      destination[key] = source[key]
+export default function extend(destination: object, source: object) {
+	for (var key in source)
+		destination[key] = source[key]
 }

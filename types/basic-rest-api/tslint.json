@@ -1,0 +1,9 @@
+{
+    "extends": "dtslint/dtslint.json",
+    "rules": {
+        "semicolon": false,
+        "indent": [true, "tabs"],
+        "interface-name": [true, "never-prefix"],
+        "quotemark":[true,"single"]
+    }
+}

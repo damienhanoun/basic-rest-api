@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "module": "amd",
+        "lib": ["es6"],
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": true,
+        "lib":["dom", "es5", "es2015.promise"],
+        "baseUrl": ".",
+        "paths": { "basic-rest-api": ["."] }
+    }
+}

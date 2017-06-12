@@ -9,5 +9,7 @@
   },
   "include": [
     "src/**/*.ts"
-  ]
+  ],
+  "baseUrl": "types/basic-rest-api",
+  "typeRoots": ["types/basic-rest-api"]
 }

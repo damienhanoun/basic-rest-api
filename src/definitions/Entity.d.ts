@@ -1,3 +1,3 @@
 interface Entity {
-    id: number|string
+	id: number | string
 }

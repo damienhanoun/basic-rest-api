@@ -1,3 +1,3 @@
-import RestApi from './RestApi'
+import RestApi from './BasicRestApi'
 
 export = RestApi;

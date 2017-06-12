@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+  const webpack = require('webpack');
 
 module.exports = {
   module: {
@@ -16,6 +16,13 @@ module.exports = {
           'process.env': {
               'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
           }
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+          beautify: false,
+          compress: {
+              screw_ie8: true
+          },
+          comments: false
       })
   ]
 };

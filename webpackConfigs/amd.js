@@ -8,17 +8,9 @@ module.exports = function (env) {
     entry: './src/index.ts',
     output: {
       filename: 'basic-rest-api.min.js',
-      path: path.resolve(__dirname, '../dist'),
-      library:'RestApi'
-    },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            beautify: false,
-            compress: {
-                screw_ie8: true
-            },
-            comments: false
-        })
-    ]
+      path: path.resolve(__dirname, '../dist/amd'),
+      library:'basic-rest-api',
+      libraryTarget:"amd"
+    }
   })
 }

@@ -18,9 +18,9 @@ npm install
 ```
 
 ## Compile the project
-This library is compiled with webpack 2, so you can run the following commands :
-* For development : `npm run build:dev`
-* For production : `npm run build:dist`
+This library is compiled with webpack 2, so you can run the following commands depending of your module choice (there is a watch by default) :
+* amd : `npm run build:amd`
+* es5 : `npm run build:es5`
 
 ## Predetermined behaviors
 There is four predetermined behaviors you can't change for now :
@@ -34,7 +34,7 @@ There is four predetermined behaviors you can't change for now :
 ## Typescript example
 Here is some basics usage :
 ```javascript
-var api = new RestApi('http://myWebApi/api'); // don't use / at the end
+var api = new BasicRestApi('http://myWebApi/api'); // don't use / at the end
 
 var resource = api.resource<YourResource>('resource1');
 //.../resource1
@@ -110,11 +110,30 @@ try {
 }
 ```
 
+## Modules
+
+### es5 (without module)
+```javascript
+let api = new BasicRestApi('http://localhost');
+```
+
+### amd (requirejs)
+ ```javascript
+ require(['basic-rest-api'], function(BasicRestApi){
+   let api = new BasicRestApi('http://localhost');
+ });
+ ```
+
+### typescript
+Definitions are in types/basic-rest-api/index.d.ts.
+For now, it is better to copy them but soon I hope it will be possible to use it like this :
+```javascript
+import { BasicRestApi } from 'basic-rest-api'
+let api = new BasicRestApi('http://localhost');
+```
+
 ## Error handling
 Even if fetch does not behave like XMLHttpRequest because it not throw exception when for example the server respond a 500 internal server error, I change this behavior by checking the response status and throw Exception if needed.
-
-## Typescript definitions
-As you could see in the root folder, there is a typescript_definitions folder you can use in your project if you use typescript.
 
 ## Test
 Just go in index.html and try it yourself.
