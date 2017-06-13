@@ -9,7 +9,7 @@ module.exports = function (env) {
     output: {
       filename: 'basic-rest-api.min.js',
       path: path.resolve(__dirname, '../dist/es5'),
-      library:'basicRestApi'
+      library:'BasicRestApi'
     }
   })
 }
