@@ -1,5 +1,6 @@
 import UrlNavigator from '../helpers/UrlNavigator'
 import RequestInitGenerator from '../helpers/RequestInitGenerator'
+import RestErrorResponse from '../helpers/RestErrorResponse'
 import ResourceNavigator from './ResourceNavigator'
 
 export default class BaseResource<T extends Entity> {
@@ -42,11 +43,13 @@ export default class BaseResource<T extends Entity> {
 		return this.handleErrorWithoutReponse(response);
 	}
 
-	protected handleErrorForGetAll(response: Response): Promise<T[]> {
+	protected async handleErrorForGetAll(response: Response): Promise<T[]> {
 		let promise: Promise<T[]>;
 
-		if (!response.ok && response.status !== 204)
-			promise = Promise.reject(response.statusText);
+		if (!response.ok && response.status !== 204) {
+			let error = await this.getError(response);
+			promise = Promise.reject(error);
+		}
 		else if (response.status === 204)
 			promise = Promise.resolve([]);
 		else
@@ -55,21 +58,34 @@ export default class BaseResource<T extends Entity> {
 		return promise;
 	}
 
-	protected handleError<U>(response: Response): Promise<U> {
+	protected async handleError<U>(response: Response): Promise<U> {
 		let promise: Promise<U>;
 
-		if (!response.ok || response.status === 204)
-			promise = Promise.reject(response.statusText);
+		if (!response.ok || response.status === 204) {
+			let error = await this.getError(response);
+			promise = Promise.reject(error);
+		}
 		else
 			promise = response.json();
 
 		return promise;
 	}
 
-	protected handleErrorWithoutReponse(response: Response): Promise<void> {
-		if (!response.ok || response.status == 204)
-			return Promise.reject(response.statusText);
+	protected async handleErrorWithoutReponse(response: Response): Promise<void> {
+		if (!response.ok || response.status == 204) {
+			let error = await this.getError(response);
+			return Promise.reject(error);
+		}
+
 		return Promise.resolve();
+	}
+
+	protected async getError(response: Response): Promise<RestErrorResponse> {
+		let errorResponse = new RestErrorResponse();
+		errorResponse.status = response.status;
+		errorResponse.statusText = response.statusText;
+		errorResponse.message = await response.text();
+		return Promise.resolve(errorResponse);
 	}
 
 }

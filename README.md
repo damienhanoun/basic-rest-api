@@ -134,6 +134,18 @@ let api = new BasicRestApi('http://localhost');
 
 ## Error handling
 Even if fetch does not behave like XMLHttpRequest because it not throw exception when for example the server respond a 500 internal server error, I change this behavior by checking the response status and throw Exception if needed.
+Error look like this :
+```javascript
+class RestErrorResponse {
+	status: number
+	statusText: string
+	message: string
+}
+```
 
 ## Test
 Just go in index.html and try it yourself.
+If you need to have a real server, you can update server.js file to put your port number and launch it using this command at the root directory of the project :
+```
+node server.js
+```

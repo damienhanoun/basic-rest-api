@@ -1,6 +1,6 @@
 {
   "name": "basic-rest-api",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A basic REST api with some predefined behaviours",
   "keywords": [
     "rest"
@@ -24,7 +24,8 @@
     "uglifyjs-webpack-plugin": "^0.4.2",
     "webpack": "^2.4.1",
     "webpack-merge": "^4.1.0",
-    "tslint":"5.4.3"
+    "tslint":"5.4.3",
+    "express": "^4.15.2"
   },
   "main": "dist/basic-rest-api.js",
   "module": "dist/basic-rest-api.js",

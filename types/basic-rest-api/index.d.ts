@@ -30,5 +30,11 @@ declare class FileResource<T extends Entity> extends BaseResource<T> {
 	download(id: string | number, headerExtension?: object): Promise<Blob>;
 }
 
+declare class RestErrorResponse {
+	status: number
+	statusText: string
+	message: string
+}
+
 export = BasicRestApi;
 export as namespace BasicRestApi;
