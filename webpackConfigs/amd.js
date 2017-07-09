@@ -5,12 +5,12 @@ var path = require('path');
 
 module.exports = function (env) {
   return webpackMerge(commonConfig, {
-    entry: './src/index.ts',
+    entry: './src/BasicRestApi.ts',
     output: {
       filename: 'basic-rest-api.min.js',
       path: path.resolve(__dirname, '../dist/amd'),
       library:'basic-rest-api',
-      libraryTarget:"amd"
+      libraryTarget:'amd'
     }
   })
 }
