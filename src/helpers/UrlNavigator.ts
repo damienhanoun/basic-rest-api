@@ -1,3 +1,5 @@
+import { encodeUrlParameters } from './Helpers'
+
 export default class UrlNavigator {
 
 	constructor(private baseUrl: string) {
@@ -15,6 +17,11 @@ export default class UrlNavigator {
 
 	addVerb(verb: string): UrlNavigator {
 		return new UrlNavigator(`${this.baseUrl}/${verb}`);
+	}
+
+	addFilters(filters: object): UrlNavigator {
+		let parameters = encodeUrlParameters(filters);
+		return new UrlNavigator(`${this.baseUrl}?${parameters}`);
 	}
 
 	toString(): string {

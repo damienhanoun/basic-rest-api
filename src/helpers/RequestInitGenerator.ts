@@ -1,4 +1,4 @@
-import extend from './Helpers'
+import { extend } from './Helpers'
 
 export default class RequestInitGenerator {
 

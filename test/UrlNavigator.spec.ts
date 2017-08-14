@@ -33,4 +33,11 @@ describe('UrlNavigator', () => {
 			.toBe('https://localhost/api/resource');
 	});
 
+	it('should add the resource to url', () => {
+		let urlNavigator = new UrlNavigator('https://localhost/api/resource');
+		let filters = { id: 1, name: 'patrick' };
+		expect(urlNavigator.addFilters(filters).toString())
+			.toBe('https://localhost/api/resource?id=1&name=patrick');
+	});
+
 });

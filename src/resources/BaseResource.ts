@@ -2,6 +2,7 @@ import UrlNavigator from '../helpers/UrlNavigator'
 import RequestInitGenerator from '../helpers/RequestInitGenerator'
 import RestErrorResponse from '../helpers/RestErrorResponse'
 import ResourceNavigator from './ResourceNavigator'
+import { ownAtLeastOneProperty } from '../helpers/Helpers'
 
 export default class BaseResource<T extends Entity> {
 
@@ -15,8 +16,14 @@ export default class BaseResource<T extends Entity> {
 		return new ResourceNavigator(this.url.addId(id));
 	}
 
-	async getAll(headerExtension: object = {}): Promise<T[]> {
-		let url = this.url.toString();
+	async getAll(filters: object = {}, headerExtension: object = {}): Promise<T[]> {
+		let url: string;
+
+		if (ownAtLeastOneProperty(filters))
+			url = this.url.addFilters(filters).toString();
+		else
+			url = this.url.toString();
+
 		let requestInit = this.requestInit.get(headerExtension);
 		let response = await fetch(url, requestInit);
 		return this.handleErrorForGetAll(response);
