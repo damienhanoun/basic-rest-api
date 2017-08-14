@@ -36,5 +36,4 @@ declare class RestErrorResponse {
 	message: string
 }
 
-export = BasicRestApi;
-export as namespace BasicRestApi;
+export default BasicRestApi;

@@ -119,8 +119,8 @@ let api = new BasicRestApi('http://localhost');
 
 ### amd (requirejs)
  ```javascript
- require(['basic-rest-api'], function(BasicRestApi){
-   let api = new BasicRestApi('http://localhost');
+ require(['basic-rest-api'], function(module){
+   let api = new module.BasicRestApi('http://localhost');
  });
  ```
 
