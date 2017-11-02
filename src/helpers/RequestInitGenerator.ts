@@ -9,14 +9,14 @@ export default class RequestInitGenerator {
 	}
 
 	get(headerExtension: object): RequestInit {
-		return {
+		return <RequestInit>{
 			method: 'GET',
 			headers: this.getJsonHeader(headerExtension)
 		};
 	}
 
 	put(object: Object, headerExtension: Object): RequestInit {
-		return {
+		return <RequestInit>{
 			method: 'PUT',
 			headers: this.getJsonHeader(headerExtension),
 			body: JSON.stringify(object)
@@ -24,7 +24,7 @@ export default class RequestInitGenerator {
 	}
 
 	post(object: Object, headerExtension: Object): RequestInit {
-		return {
+		return <RequestInit>{
 			method: 'POST',
 			headers: this.getJsonHeader(headerExtension),
 			body: JSON.stringify(object)
@@ -32,7 +32,7 @@ export default class RequestInitGenerator {
 	}
 
 	delete(headerExtension: Object): RequestInit {
-		return {
+		return <RequestInit>{
 			method: 'DELETE',
 			headers: this.getJsonHeader(headerExtension)
 		};
@@ -41,7 +41,7 @@ export default class RequestInitGenerator {
 	postFile(file: File, headerExtension: Object): RequestInit {
 		var data = new FormData();
 		data.append('file', file);
-		return {
+		return <RequestInit>{
 			method: 'POST',
 			headers: new Headers(headerExtension),
 			body: data
@@ -49,7 +49,7 @@ export default class RequestInitGenerator {
 	}
 
 	getFile(headerExtension: Object): RequestInit {
-		return {
+		return <RequestInit>{
 			method: 'GET',
 			headers: new Headers(headerExtension)
 		};
